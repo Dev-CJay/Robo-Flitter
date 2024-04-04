@@ -255,34 +255,35 @@ const NameFilter = () => {
   );
 
   return (
-    <div className="flex flex-col items-center h-full w-screen bg-green-500" >
-      <input className="border border-gray- bg-white-50 hover:shadow-xl rounded-md px-4 py-2 focus:outline-none focus:border-blue-300"
+    <div className="flex flex-col items-center min-h-screen bg-green-500">
+      <input 
+        className="border border-gray-300 bg-white hover:shadow-xl rounded-md px-4 py-2 focus:outline-none focus:border-blue-300 w-full sm:w-80"
         type="text"
         placeholder="Search..."
         value={searchTerm}
         onChange={handleSearchChange}
       />
-      <div className="border border-gray-300 rounded-md px-4 py-5 gap-5 grid grid-cols-5 font-bold font-serif text-left focus:outline-none ">
+      <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 w-full max-w-screen-xl px-4 py-5">
         {searchResults.length === 0 ? (
-          <p>No results found.</p>
+          <p className="col-span-full text-center">No results found.</p>
         ) : (
           searchResults.map(result => (
-            <div key={result.id} className="bg-white border border-gray-300 p-4 mb-4 rounded-md"> <img src={result.imageUrl} alt={result.name} className="rounded-full mb-4"/>
-            <p><strong>Name:</strong>{result.name}</p>
-            <p><strong>Username:</strong>{result.username}</p>
-            <p><strong>Email:</strong>{result.email}</p>
-            <p><strong>Address:</strong>{result.address.street}, {result.address.suite}, {result.address.city},{result.address.zipcode}</p>
-            <p><strong>website:</strong>{result.website}</p>
-            <p><strong>Company:</strong>{result.company.name}, {result.company.catchPhrase}, {result.company.bs} </p>
-            <p><strong>Phone:</strong>{result.phone}</p>
-            
-            
+            <div key={result.id} className="bg-white border border-gray-300 p-4 rounded-md">
+              <img src={result.imageUrl} alt={result.name} className="rounded-full mb-4 mx-auto sm:mx-0"/>
+              <p><strong>Name:</strong>{result.name}</p>
+              <p><strong>Username:</strong>{result.username}</p>
+              <p><strong>Email:</strong>{result.email}</p>
+              <p><strong>Address:</strong>{result.address.street}, {result.address.suite}, {result.address.city},{result.address.zipcode}</p>
+              <p><strong>Website:</strong>{result.website}</p>
+              <p><strong>Company:</strong>{result.company.name}, {result.company.catchPhrase}, {result.company.bs} </p>
+              <p><strong>Phone:</strong>{result.phone}</p>
             </div>
           ))
         )}
       </div>
     </div>
   );
+  
 };
 
 export default NameFilter;
